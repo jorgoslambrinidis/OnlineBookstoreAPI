@@ -36,7 +36,7 @@
         {
             byte[] passwordHash, passwordSalt;
 
-            // uncomment for testing purposes
+            // comment/uncomment for testing purposes
             // Debugger.Launch();
 
             var currentDirectory = Directory.GetCurrentDirectory();

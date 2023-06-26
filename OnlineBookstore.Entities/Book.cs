@@ -4,7 +4,7 @@
 
     public class Book
     {
-        [Key]    
+        [Key]
         public int Id { get; set; }
 
         [StringLength(250)]
@@ -56,6 +56,8 @@
 
         [StringLength(50)]
         public string? Language { get; set; }
+
+        public string? Country { get; set; }
 
         public int Edition { get; set; }
 

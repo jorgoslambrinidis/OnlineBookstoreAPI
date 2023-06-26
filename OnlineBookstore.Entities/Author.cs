@@ -10,7 +10,7 @@
         [StringLength(100)]
         public string Name { get; set; } = null!;
 
-        [StringLength(400)]
+        [StringLength(1000)]
         public string? ShortDescription { get; set; }
 
         public bool IsPopular { get; set; }

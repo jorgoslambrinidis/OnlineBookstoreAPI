@@ -29,6 +29,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineBookstore.Data\OnlineBookstore.Data.csproj" />
+    <ProjectReference Include="..\OnlineBookstore.Repositories\OnlineBookstore.Repositories.csproj" />
+    <ProjectReference Include="..\OnlineBookstore.Service.Interfaces\OnlineBookstore.Service.Interfaces.csproj" />
+    <ProjectReference Include="..\OnlineBookstore.Services\OnlineBookstore.Services.csproj" />
   </ItemGroup>
 
 </Project>

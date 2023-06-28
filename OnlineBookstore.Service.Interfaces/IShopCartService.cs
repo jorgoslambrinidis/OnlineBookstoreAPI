@@ -1,12 +1,18 @@
 ﻿namespace OnlineBookstore.Service.Interfaces
 {
-    using System;
+    using OnlineBookstore.Entities;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public interface IShopCartService
     {
+        void Add(ShopCart shopCart);
+
+        void Edit(ShopCart shopCart);
+
+        void Delete(ShopCart shopCart);
+
+        ShopCart GetShopCartById(int id);
+
+        IEnumerable<ShopCart> GetAllShopCarts();
     }
 }

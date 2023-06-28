@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineBookstore.Repository.Interfaces\OnlineBookstore.Repository.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineBookstore.Repository.Interfaces\OnlineBookstore.Repository.Interfaces.csproj" />
     <ProjectReference Include="..\OnlineBookstore.Service.Interfaces\OnlineBookstore.Service.Interfaces.csproj" />
   </ItemGroup>
 

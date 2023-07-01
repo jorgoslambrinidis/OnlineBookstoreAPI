@@ -1,5 +1,7 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using Microsoft.EntityFrameworkCore;
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +12,13 @@
 
     public class BookRepository : IBookRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public BookRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Book book)
         {
             throw new NotImplementedException();
@@ -27,7 +36,8 @@
 
         public IEnumerable<Book> GetAllBooks()
         {
-            throw new NotImplementedException();
+            var result = _context.Books.AsEnumerable();
+            return result;
         }
 
         public IEnumerable<Book> GetAllBooksByAuthor(string authorName)

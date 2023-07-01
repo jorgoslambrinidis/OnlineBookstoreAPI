@@ -1,48 +1,60 @@
 ﻿namespace OnlineBookstore.Services
 {
     using OnlineBookstore.Entities;
+    using OnlineBookstore.Repository.Interfaces;
     using OnlineBookstore.Service.Interfaces;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class AuthorService : IAuthorService
     {
+        private readonly IAuthorRepository _authorRepository;
+
+        public AuthorService(IAuthorRepository authorRepository)
+        {
+            _authorRepository = authorRepository;
+        }
+
         public void Add(Author author)
         {
-            throw new NotImplementedException();
+            _authorRepository.Add(author);
         }
 
         public void Delete(Author author)
         {
-            throw new NotImplementedException();
+            _authorRepository.Delete(author);
         }
 
         public void Edit(Author author)
         {
-            throw new NotImplementedException();
+            _authorRepository.Edit(author);
         }
 
         public Author GetAuthorById(int id)
         {
-            throw new NotImplementedException();
+            // 1st option
+            var result = _authorRepository.GetAuthorById(id);
+            return result;
+
+            // 2nd option
+            //return _authorRepository.GetAuthorById(id);
         }
 
         public Author GetAuthorByPopularity(bool popularity)
         {
-            throw new NotImplementedException();
+            var result = _authorRepository.GetAuthorByPopularity(popularity);
+            return result;
         }
 
         public IEnumerable<Author> GetAuthors()
         {
-            throw new NotImplementedException();
+            var result = _authorRepository.GetAuthors();
+            return result;
         }
 
         public IEnumerable<Author> GetAuthorsByPopularity(bool popularity)
         {
-            throw new NotImplementedException();
+            var result = _authorRepository.GetAuthorsByPopularity(popularity);
+            return result;
         }
     }
 }

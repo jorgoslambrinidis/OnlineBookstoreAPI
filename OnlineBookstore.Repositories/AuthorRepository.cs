@@ -1,5 +1,6 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +11,13 @@
 
     public class AuthorRepository : IAuthorRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public AuthorRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Author author)
         {
             throw new NotImplementedException();
@@ -37,7 +45,8 @@
 
         public IEnumerable<Author> GetAuthors()
         {
-            throw new NotImplementedException();
+            var result = _context.Author.AsEnumerable();
+            return result;
         }
 
         public IEnumerable<Author> GetAuthorsByPopularity(bool popularity)

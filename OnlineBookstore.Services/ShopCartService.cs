@@ -1,38 +1,44 @@
 ﻿namespace OnlineBookstore.Services
 {
     using OnlineBookstore.Entities;
+    using OnlineBookstore.Repository.Interfaces;
     using OnlineBookstore.Service.Interfaces;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class ShopCartService : IShopCartService
     {
+        private readonly IShopCartRepository _shopCartRepository;
+
+        public ShopCartService(IShopCartRepository shopCartRepository)
+        {
+            _shopCartRepository = shopCartRepository;
+        }
+
         public void Add(ShopCart shopCart)
         {
-            throw new NotImplementedException();
+            _shopCartRepository.Add(shopCart);
         }
 
         public void Delete(ShopCart shopCart)
         {
-            throw new NotImplementedException();
+            _shopCartRepository.Delete(shopCart);
         }
 
         public void Edit(ShopCart shopCart)
         {
-            throw new NotImplementedException();
+            _shopCartRepository.Edit(shopCart);
         }
 
         public IEnumerable<ShopCart> GetAllShopCarts()
         {
-            throw new NotImplementedException();
+            var result = _shopCartRepository.GetAllShopCarts();
+            return result;
         }
 
         public ShopCart GetShopCartById(int id)
         {
-            throw new NotImplementedException();
+            var result = _shopCartRepository.GetShopCartById(id);
+            return result;
         }
     }
 }

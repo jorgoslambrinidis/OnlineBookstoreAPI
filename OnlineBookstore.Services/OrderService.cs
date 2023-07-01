@@ -1,58 +1,66 @@
 ﻿namespace OnlineBookstore.Services
 {
     using OnlineBookstore.Entities;
+    using OnlineBookstore.Repository.Interfaces;
     using OnlineBookstore.Service.Interfaces;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class OrderService : IOrderService
     {
+        private readonly IOrderRepository _orderRepository;
+
+        public OrderService(IOrderRepository orderRepository)
+        {
+            _orderRepository = orderRepository;
+        }
+
         public void Add(Order order)
         {
-            throw new NotImplementedException();
+            _orderRepository.Add(order);
         }
 
         public void Delete(Order order)
         {
-            throw new NotImplementedException();
+            _orderRepository.Delete(order);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _orderRepository.Delete(id);
         }
 
         public void DeleteByUserId(string userId)
         {
-            throw new NotImplementedException();
+            _orderRepository.DeleteByUserId(userId);
         }
 
         public void Edit(Order order)
         {
-            throw new NotImplementedException();
+            _orderRepository.Edit(order);
         }
 
         public IEnumerable<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            var result = _orderRepository.GetAllOrders();
+            return result;
         }
 
         public IEnumerable<Order> GetAllOrdersByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var result = _orderRepository.GetAllOrdersByUserId(userId);
+            return result;
         }
 
         public Order GetOrderById(int id)
         {
-            throw new NotImplementedException();
+            var result = _orderRepository.GetOrderById(id);
+            return result;
         }
 
         public Order GetOrderByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var result = _orderRepository.GetOrderByUserId(userId);
+            return result;
         }
     }
 }

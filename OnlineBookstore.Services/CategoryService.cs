@@ -1,43 +1,50 @@
 ﻿namespace OnlineBookstore.Services
 {
     using OnlineBookstore.Entities;
+    using OnlineBookstore.Repository.Interfaces;
     using OnlineBookstore.Service.Interfaces;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class CategoryService : ICategoryService
     {
+        private readonly ICategoryRepository _categoryRepository;
+
+        public CategoryService(ICategoryRepository categoryRepository)
+        {
+            _categoryRepository = categoryRepository;
+        }
+
         public void Add(Category category)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Add(category);
         }
 
         public void Delete(Category category)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Delete(category);
         }
 
         public void Edit(Category category)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Edit(category);
         }
 
         public IEnumerable<Category> GetAllCategories()
         {
-            throw new NotImplementedException();
+            var result = _categoryRepository.GetAllCategories();
+            return result;
         }
 
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            var result = _categoryRepository.GetCategoryById(id);
+            return result;
         }
 
         public Category GetCategoryByName(string name)
         {
-            throw new NotImplementedException();
+            var result = _categoryRepository.GetCategoryByName(name);
+            return result;
         }
     }
 }

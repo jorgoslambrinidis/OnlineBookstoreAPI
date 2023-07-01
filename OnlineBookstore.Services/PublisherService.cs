@@ -1,48 +1,56 @@
 ﻿namespace OnlineBookstore.Services
 {
     using OnlineBookstore.Entities;
+    using OnlineBookstore.Repository.Interfaces;
     using OnlineBookstore.Service.Interfaces;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class PublisherService : IPublisherService
     {
+        private readonly IPublisherRepository _publisherRepository;
+
+        public PublisherService(IPublisherRepository publisherRepository)
+        {
+            _publisherRepository = publisherRepository;
+        }
+
         public void Add(Publisher publisher)
         {
-            throw new NotImplementedException();
+            _publisherRepository.Add(publisher);
         }
 
         public void Delete(Publisher publisher)
         {
-            throw new NotImplementedException();
+            _publisherRepository.Delete(publisher);
         }
 
         public void Edit(Publisher publisher)
         {
-            throw new NotImplementedException();
+            _publisherRepository.Edit(publisher);
         }
 
         public IEnumerable<Publisher> GetAllPublishers()
         {
-            throw new NotImplementedException();
+            var result = _publisherRepository.GetAllPublishers();
+            return result;
         }
 
         public Publisher GetPublisherByCountry(string country)
         {
-            throw new NotImplementedException();
+            var result = _publisherRepository.GetPublisherByCountry(country);
+            return result;
         }
 
         public Publisher GetPublisherById(int id)
         {
-            throw new NotImplementedException();
+            var result = _publisherRepository.GetPublisherById(id);
+            return result;
         }
 
         public Publisher GetPublisherByName(string name)
         {
-            throw new NotImplementedException();
+            var result = _publisherRepository.GetPublisherByName(name);
+            return result;
         }
     }
 }

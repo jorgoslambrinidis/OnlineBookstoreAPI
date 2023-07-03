@@ -1,5 +1,7 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using Microsoft.EntityFrameworkCore;
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +12,13 @@
 
     public class PublisherRepository : IPublisherRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public PublisherRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Publisher publisher)
         {
             throw new NotImplementedException();
@@ -27,7 +36,8 @@
 
         public IEnumerable<Publisher> GetAllPublishers()
         {
-            throw new NotImplementedException();
+            var result = _context.Publishers.AsEnumerable();
+            return result;
         }
 
         public Publisher GetPublisherByCountry(string country)

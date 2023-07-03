@@ -1,11 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace OnlineBookstoreAPI.Controllers
+﻿namespace OnlineBookstoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    using Microsoft.AspNetCore.Mvc;
+    using OnlineBookstore.Entities;
+    using OnlineBookstore.Service.Interfaces;
+
+    public class UserController : BaseApiController
     {
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
+        [HttpGet("Users")]
+        public ActionResult<IEnumerable<User>> GetAllUsers()
+        {
+            var users = _userService.GetAllUsers();
+            return Ok(users);
+        }
     }
 }

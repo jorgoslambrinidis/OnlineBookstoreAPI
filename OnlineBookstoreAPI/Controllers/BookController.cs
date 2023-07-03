@@ -13,7 +13,6 @@
             _bookService = bookService;
         }
 
-
         [HttpGet("Books")]
         public ActionResult<IEnumerable<Book>> GetBooks()
         {

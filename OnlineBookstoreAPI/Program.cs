@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using OnlineBookstore.Data;
 using OnlineBookstore.Repositories;
 using OnlineBookstore.Repository.Interfaces;
@@ -86,6 +87,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images")),
+    RequestPath = new PathString("/Resources/Images")
+});
 
 app.UseCors("OnlineBookstoreCorsPolicy");
 

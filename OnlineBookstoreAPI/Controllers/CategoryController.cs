@@ -1,11 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace OnlineBookstoreAPI.Controllers
+﻿namespace OnlineBookstoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoryController : ControllerBase
+    using Microsoft.AspNetCore.Mvc;
+    using OnlineBookstore.Entities;
+    using OnlineBookstore.Service.Interfaces;
+
+    public class CategoryController : BaseApiController
     {
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
+        [HttpGet("Categories")]
+        public ActionResult<IEnumerable<Category>> GetAllCategories()
+        {
+            var categories = _categoryService.GetAllCategories();
+            return Ok(categories);
+        }
     }
 }

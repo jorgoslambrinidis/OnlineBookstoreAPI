@@ -1,5 +1,6 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +11,13 @@
 
     public class ShopCartRepository : IShopCartRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public ShopCartRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(ShopCart shopCart)
         {
             throw new NotImplementedException();
@@ -27,7 +35,8 @@
 
         public IEnumerable<ShopCart> GetAllShopCarts()
         {
-            throw new NotImplementedException();
+            var result = _context.ShopCarts.AsEnumerable();
+            return result;
         }
 
         public ShopCart GetShopCartById(int id)

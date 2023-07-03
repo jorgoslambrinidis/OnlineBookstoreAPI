@@ -1,11 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace OnlineBookstoreAPI.Controllers
+﻿namespace OnlineBookstoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PublisherController : ControllerBase
+    using Microsoft.AspNetCore.Mvc;
+    using OnlineBookstore.Entities;
+    using OnlineBookstore.Service.Interfaces;
+
+    public class PublisherController : BaseApiController
     {
+        private readonly IPublisherService _publisherService;
+
+        public PublisherController(IPublisherService publisherService)
+        {
+            _publisherService = publisherService;
+        }
+
+        [HttpGet("Publishers")]
+        public ActionResult<IEnumerable<Publisher>> GetAllPublishers()
+        {
+            var publishers = _publisherService.GetAllPublishers();
+            return Ok(publishers);
+        }
     }
 }

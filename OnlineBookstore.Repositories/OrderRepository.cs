@@ -1,5 +1,6 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +11,13 @@
 
     public class OrderRepository : IOrderRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public OrderRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Order order)
         {
             throw new NotImplementedException();
@@ -37,7 +45,8 @@
 
         public IEnumerable<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            var result = _context.Orders.AsEnumerable();
+            return result;
         }
 
         public IEnumerable<Order> GetAllOrdersByUserId(string userId)

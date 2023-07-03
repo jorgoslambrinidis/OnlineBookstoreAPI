@@ -1,5 +1,6 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +11,13 @@
 
     public class UserRepository : IUserRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public UserRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(User user)
         {
             throw new NotImplementedException();
@@ -27,7 +35,8 @@
 
         public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            var result = _context.Users.AsEnumerable();
+            return result;
         }
 
         public User GetUserById(string id)

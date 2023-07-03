@@ -1,5 +1,6 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
@@ -10,6 +11,13 @@
 
     public class CategoryRepository : ICategoryRepository
     {
+        private readonly OnlineBookstoreDbContext _context;
+
+        public CategoryRepository(OnlineBookstoreDbContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Category category)
         {
             throw new NotImplementedException();
@@ -27,7 +35,8 @@
 
         public IEnumerable<Category> GetAllCategories()
         {
-            throw new NotImplementedException();
+            var result = _context.Categories.AsEnumerable();
+            return result;
         }
 
         public Category GetCategoryById(int id)

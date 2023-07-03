@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="Resources\Images\" />
     <Folder Include="Settings\" />
   </ItemGroup>
 

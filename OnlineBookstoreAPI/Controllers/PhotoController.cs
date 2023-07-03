@@ -1,11 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace OnlineBookstoreAPI.Controllers
+﻿namespace OnlineBookstoreAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PhotoController : ControllerBase
+    using Microsoft.AspNetCore.Mvc;
+    using OnlineBookstore.Entities;
+    using OnlineBookstore.Service.Interfaces;
+
+    public class PhotoController : BaseApiController
     {
+        private readonly IPhotoService _photoService;
+
+        public PhotoController(IPhotoService photoService)
+        {
+            _photoService = photoService;
+        }
+
+        [HttpGet("Photos")]
+        public ActionResult<IEnumerable<Photo>> GetAllPhotos()
+        {
+            var photos = _photoService.GetAllPhotos();
+            return Ok(photos);
+        }
     }
 }

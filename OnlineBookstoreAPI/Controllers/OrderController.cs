@@ -16,8 +16,22 @@
         [HttpGet("Orders")]
         public ActionResult<IEnumerable<Order>> GetAllOrders()
         {
-            var orders = _orderService.GetAllOrders();
-            return Ok(orders);
+            try
+            {
+                var orders = _orderService.GetAllOrders();
+
+                if (orders.ToList().Count == 0)
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, "The list is empty");
+                }
+
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+           
         }
     }
 }

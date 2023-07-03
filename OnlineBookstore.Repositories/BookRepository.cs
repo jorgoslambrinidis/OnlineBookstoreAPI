@@ -26,12 +26,14 @@
 
         public void Delete(Book book)
         {
-            throw new NotImplementedException();
+            _context.Books.Remove(book);
+            _context.SaveChanges();
         }
 
         public void Edit(Book book)
         {
-            throw new NotImplementedException();
+            _context.Books.Update(book);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Book> GetAllBooks()
@@ -102,7 +104,8 @@
 
         public Book GetBookById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Books.FirstOrDefault(b => b.Id == id);
+            return result;
         }
 
         public IEnumerable<Book> GetTop5PopularBooks()

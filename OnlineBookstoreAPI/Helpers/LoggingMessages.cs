@@ -10,5 +10,6 @@
     public static class InfoMessages
     {
         public const string BookNotFound = "The book was not found in our system.";
+        public const string AllBooksTakenFromDb = "All books are taken from db.";
     }
 }

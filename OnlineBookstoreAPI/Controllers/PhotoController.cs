@@ -4,7 +4,7 @@
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
 
-    public class PhotoController : BaseApiController
+    public class PhotoController : BaseApiController<PhotoController>
     {
         private readonly IPhotoService _photoService;
 

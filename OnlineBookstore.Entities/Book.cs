@@ -76,6 +76,9 @@
 
         public int SoldItems { get; set; }
 
+        [StringLength(350)]
+        public string UserId { get; set; }
+
         public virtual ICollection<Photo>? Photos { get; set; }
     }
 }

@@ -3,9 +3,8 @@
     using Microsoft.AspNetCore.Mvc;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
-    using OnlineBookstoreAPI.Helpers;
 
-    public class BookController : BaseApiController
+    public class BookController : BaseApiController<BookController>
     {
         private readonly IBookService _bookService;
         private readonly ILogger<BookController> _logger;
@@ -39,7 +38,7 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetrievingData);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
             }
         }
 
@@ -64,7 +63,7 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetrievingData);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
             }
         }
 
@@ -86,7 +85,7 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetrievingData);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
             }
         }
 
@@ -110,7 +109,7 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetrievingData);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
             }
         }
 
@@ -134,8 +133,29 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetrievingData);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
             }
         }
+
+        [HttpGet("GetAllBooksWithRelationalData")]
+        public ActionResult<IEnumerable<Book>> GetAllBooksWithFullRelationalData()
+        {
+            try
+            {
+                var booksWithFullData = _bookService.GetAllBooksWithFullRelationalData();
+
+                if (booksWithFullData == null)
+                    return NotFound();
+                else
+                    return Ok(booksWithFullData);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
+            }
+        }
+
+
     }
 }

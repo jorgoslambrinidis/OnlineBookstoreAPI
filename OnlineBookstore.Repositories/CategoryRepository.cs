@@ -3,11 +3,8 @@
     using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class CategoryRepository : ICategoryRepository
     {
@@ -20,17 +17,20 @@
 
         public void Add(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Add(category);
+            _context.SaveChanges();
         }
 
         public void Delete(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
         }
 
         public void Edit(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Update(category);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Category> GetAllCategories()
@@ -41,12 +41,14 @@
 
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Categories.FirstOrDefault(x => x.Id == id);
+            return result;
         }
 
         public Category GetCategoryByName(string name)
         {
-            throw new NotImplementedException();
+            var result = _context.Categories.FirstOrDefault(x => x.Name == name);
+            return result;
         }
     }
 }

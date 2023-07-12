@@ -4,7 +4,7 @@
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
 
-    public class UserController : BaseApiController
+    public class UserController : BaseApiController<UserController>
     {
         private readonly IUserService _userService;
 

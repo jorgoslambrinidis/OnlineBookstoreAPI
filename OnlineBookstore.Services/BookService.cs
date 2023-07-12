@@ -43,9 +43,9 @@
             return result;
         }
 
-        public IEnumerable<Book> GetAllBooksByCountry()
+        public IEnumerable<Book> GetAllBooksByCountry(string country)
         {
-            var result = _bookRepository.GetAllBooksByCountry();
+            var result = _bookRepository.GetAllBooksByCountry(country);
             return result;
         }
 
@@ -79,9 +79,9 @@
             return result;
         }
 
-        public IEnumerable<Book> GetAllBooksByUser()
+        public IEnumerable<Book> GetAllBooksByUser(User user)
         {
-            var result = _bookRepository.GetAllBooksByUser();
+            var result = _bookRepository.GetAllBooksByUser(user);
             return result;
         }
 
@@ -121,9 +121,9 @@
             return result;
         }
 
-        public IEnumerable<Book> GetTopPopularBooksByBestSellingAuthor()
+        public IEnumerable<Book> GetTopPopularBooksByBestSellingAuthor(int authorId)
         {
-            var result = _bookRepository.GetTopPopularBooksByBestSellingAuthor();
+            var result = _bookRepository.GetTopPopularBooksByBestSellingAuthor(authorId);
             return result;
         }
     }

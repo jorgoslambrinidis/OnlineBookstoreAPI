@@ -3,11 +3,8 @@
     using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class OrderRepository : IOrderRepository
     {
@@ -20,27 +17,34 @@
 
         public void Add(Order order)
         {
-            throw new NotImplementedException();
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
 
         public void Delete(Order order)
         {
-            throw new NotImplementedException();
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var order = GetOrderById(id);
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
 
         public void DeleteByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var order = _context.Orders.Where(o => o.UserId == userId).FirstOrDefault();
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
 
         public void Edit(Order order)
         {
-            throw new NotImplementedException();
+            _context.Orders.Update(order);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Order> GetAllOrders()
@@ -51,17 +55,20 @@
 
         public IEnumerable<Order> GetAllOrdersByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var result = _context.Orders.Where(o => o.UserId == userId).AsEnumerable();
+            return result;
         }
 
         public Order GetOrderById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Orders.FirstOrDefault(o => o.Id == id);
+            return result;
         }
 
         public Order GetOrderByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var result = _context.Orders.Where(o => o.UserId == userId).FirstOrDefault();
+            return result;
         }
     }
 }

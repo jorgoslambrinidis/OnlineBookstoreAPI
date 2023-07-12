@@ -4,7 +4,7 @@
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
 
-    public class CategoryController : BaseApiController
+    public class CategoryController : BaseApiController<CategoryController>
     {
         private readonly ICategoryService _categoryService;
 
@@ -19,5 +19,96 @@
             var categories = _categoryService.GetAllCategories();
             return Ok(categories);
         }
+
+        [HttpGet("Category")]
+        public ActionResult<Category> GetCategory(int id)
+        {
+            try
+            {
+                var category = _categoryService.GetCategoryById(id);
+
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(category);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
+            }
+        }
+
+        [HttpPut("Edit")]
+        public IActionResult EditCategory(Category category)
+        {
+            try
+            {
+                var categoryToEdit = _categoryService.GetCategoryById(category.Id);
+
+                if (categoryToEdit == null)
+                {
+                    return NotFound($"Category with Id = {category.Id} not found!");
+                }
+
+                _categoryService.Edit(category);
+
+                return StatusCode(StatusCodes.Status202Accepted, category);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorUpdatingData);
+            }
+        }
+
+        [HttpPost("Add")]
+        public ActionResult<Category> AddCategory(Category category)
+        {
+            try
+            {
+                if (category == null)
+                {
+                    return BadRequest();
+                }
+
+                _categoryService.Add(category);
+
+                return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, category);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating new category record!");
+            }
+        }
+
+        [HttpDelete("Delete")]
+        public ActionResult<Category> DeleteCategory(int id)
+        {
+            try
+            {
+                var category = _categoryService.GetCategoryById(id);
+
+                if (category == null)
+                {
+                    return NotFound($"Category with Id = {id} not found!");
+                }
+
+                _categoryService.Delete(category);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorDeletingData);
+            }
+        }
+
     }
 }

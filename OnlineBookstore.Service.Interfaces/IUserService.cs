@@ -15,11 +15,11 @@
 
         User GetUserByUsername(string username);
 
+        User GetUserByEmail(string email);
+
         IEnumerable<User> GetUsersByCountry(string country);
 
         IEnumerable<User> GetUsersByCity(string city);
-
-        IEnumerable<User> GetUsersByEmail(string email);
 
         IEnumerable<User> GetAllUsers();
     }

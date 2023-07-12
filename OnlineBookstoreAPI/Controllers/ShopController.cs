@@ -4,7 +4,7 @@
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
 
-    public class ShopController : BaseApiController
+    public class ShopController : BaseApiController<ShopController>
     {
         private readonly IShopCartService _shopCartService;
 

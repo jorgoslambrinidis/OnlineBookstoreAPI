@@ -47,6 +47,12 @@
             return result;
         }
 
+        public User GetUserByEmail(string email)
+        {
+            var result = _userRepository.GetUserByEmail(email);
+            return result;
+        }
+
         public IEnumerable<User> GetUsersByCity(string city)
         {
             var result = _userRepository.GetUsersByCity(city);
@@ -59,10 +65,5 @@
             return result;
         }
 
-        public IEnumerable<User> GetUsersByEmail(string email)
-        {
-            var result = _userRepository.GetUsersByEmail(email);
-            return result;
-        }
     }
 }

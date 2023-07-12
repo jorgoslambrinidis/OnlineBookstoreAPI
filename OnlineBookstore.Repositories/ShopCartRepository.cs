@@ -3,11 +3,8 @@
     using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class ShopCartRepository : IShopCartRepository
     {
@@ -20,17 +17,20 @@
 
         public void Add(ShopCart shopCart)
         {
-            throw new NotImplementedException();
+            _context.ShopCarts.Add(shopCart);
+            _context.SaveChanges();
         }
 
         public void Delete(ShopCart shopCart)
         {
-            throw new NotImplementedException();
+            _context.ShopCarts.Remove(shopCart);
+            _context.SaveChanges();
         }
 
         public void Edit(ShopCart shopCart)
         {
-            throw new NotImplementedException();
+            _context.ShopCarts.Update(shopCart);
+            _context.SaveChanges();
         }
 
         public IEnumerable<ShopCart> GetAllShopCarts()
@@ -41,7 +41,8 @@
 
         public ShopCart GetShopCartById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.ShopCarts.FirstOrDefault(x => x.Id == id);
+            return result;
         }
     }
 }

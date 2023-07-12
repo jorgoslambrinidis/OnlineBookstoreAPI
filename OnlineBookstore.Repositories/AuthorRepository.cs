@@ -3,11 +3,8 @@
     using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class AuthorRepository : IAuthorRepository
     {
@@ -20,27 +17,32 @@
 
         public void Add(Author author)
         {
-            throw new NotImplementedException();
+            _context.Author.Add(author);
+            _context.SaveChanges();
         }
 
         public void Delete(Author author)
         {
-            throw new NotImplementedException();
+            _context.Author.Remove(author);
+            _context.SaveChanges();
         }
 
         public void Edit(Author author)
         {
-            throw new NotImplementedException();
+            _context.Author.Update(author);
+            _context.SaveChanges();
         }
 
         public Author GetAuthorById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Author.FirstOrDefault(x => x.Id == id);
+            return result;
         }
 
         public Author GetAuthorByPopularity(bool popularity)
         {
-            throw new NotImplementedException();
+            var result = _context.Author.Where(x => x.IsPopular == popularity).FirstOrDefault();
+            return result;
         }
 
         public IEnumerable<Author> GetAuthors()
@@ -51,7 +53,8 @@
 
         public IEnumerable<Author> GetAuthorsByPopularity(bool popularity)
         {
-            throw new NotImplementedException();
+            var result = _context.Author.Where(x => x.IsPopular == popularity).AsEnumerable();
+            return result;
         }
     }
 }

@@ -1,36 +1,48 @@
 ﻿namespace OnlineBookstore.Repositories
 {
+    using Microsoft.Extensions.Logging;
     using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class UserRepository : IUserRepository
     {
         private readonly OnlineBookstoreDbContext _context;
+        private readonly ILogger<BookRepository> _logger;
 
-        public UserRepository(OnlineBookstoreDbContext context)
+        public UserRepository(OnlineBookstoreDbContext context, ILogger<BookRepository> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public void Add(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+                _logger.LogInformation(LoggerMessageDisplay.UserCreated);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(LoggerMessageDisplay.UserNotCreatedModelStateInvalid, ex);
+            }
         }
 
         public void Delete(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
 
         public void Edit(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Update(user);
+            _context.SaveChanges();
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -41,27 +53,32 @@
 
         public User GetUserById(string id)
         {
-            throw new NotImplementedException();
+            var result = _context.Users.FirstOrDefault(b => b.Id.ToString() == id);
+            return result;
         }
 
         public User GetUserByUsername(string username)
         {
-            throw new NotImplementedException();
+            var result = _context.Users.FirstOrDefault(b => b.Username == username);
+            return result;
         }
 
         public IEnumerable<User> GetUsersByCity(string city)
         {
-            throw new NotImplementedException();
+            var result = _context.Users.Where(b => b.City == city).AsEnumerable();
+            return result;
         }
 
         public IEnumerable<User> GetUsersByCountry(string country)
         {
-            throw new NotImplementedException();
+            var result = _context.Users.Where(b => b.Country == country).AsEnumerable();
+            return result;
         }
 
-        public IEnumerable<User> GetUsersByEmail(string email)
+        public User GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            var result = _context.Users.FirstOrDefault(b => b.Email == email);
+            return result;
         }
     }
 }

@@ -21,18 +21,18 @@
 
         IEnumerable<Book> GetAllBooks();
 
-        IEnumerable<Book> GetAllBooksByUser();
+        IEnumerable<Book> GetAllBooksByUser(User user);
         IEnumerable<Book> GetAllBooksByUserId(string userId);
         IEnumerable<Book> GetAllBooksByDateDescending();
         IEnumerable<Book> GetAllBooksByDateAscending();
         IEnumerable<Book> GetAllBooksFromToDateByUserId(string userId, DateTime from, DateTime to);
         IEnumerable<Book> GetAllBooksByPriceAscending();
         IEnumerable<Book> GetAllBooksByPriceDescending();
-        IEnumerable<Book> GetAllBooksByCountry();
+        IEnumerable<Book> GetAllBooksByCountry(string country);
         IEnumerable<Book> GetAllBooksByAuthor(string authorName);
         IEnumerable<Book> GetAllBooksByPublisher(string publisherName);
         IEnumerable<Book> GetTop5PopularBooks();
-        IEnumerable<Book> GetTopPopularBooksByBestSellingAuthor();
+        IEnumerable<Book> GetTopPopularBooksByBestSellingAuthor(int authorId);
 
         // IMPORTANT!!!
         IEnumerable<Book> GetAllBooksWithFullRelationalData();

@@ -1,14 +1,11 @@
 ﻿namespace OnlineBookstore.Repositories
 {
-    using Microsoft.EntityFrameworkCore;
     using OnlineBookstore.Data;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Repository.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class PhotoRepository : IPhotoRepository
     {
@@ -21,22 +18,26 @@
 
         public void Add(Photo photo)
         {
-            throw new NotImplementedException();
+            _context.Photos.Add(photo);
+            _context.SaveChanges();
         }
 
         public void Delete(Photo photo)
         {
-            throw new NotImplementedException();
+            _context.Photos.Remove(photo);
+            _context.SaveChanges();
         }
 
         public void Edit(Photo photo)
         {
-            throw new NotImplementedException();
+            _context.Photos.Update(photo);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Photo> GetAllMainPhotos(bool isMain)
         {
-            throw new NotImplementedException();
+            var result = _context.Photos.Where(p => p.IsMain == isMain).AsEnumerable();
+            return result;
         }
 
         public IEnumerable<Photo> GetAllPhotos()
@@ -47,12 +48,14 @@
 
         public Photo GetPhotoById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Photos.FirstOrDefault(p => p.Id == id);
+            return result;
         }
 
         public IEnumerable<Photo> GetPhotosByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            var result = _context.Photos.Where(p => p.DateAdded == date).AsEnumerable();
+            return result;
         }
     }
 }

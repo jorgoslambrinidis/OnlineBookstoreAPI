@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using OnlineBookstoreAPI.Models;
 
-    public class HomeController : BaseApiController
+    public class HomeController : BaseApiController<HomeController>
     {
         
         [HttpGet("Quotes")]

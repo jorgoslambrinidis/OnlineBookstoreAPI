@@ -4,7 +4,7 @@
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
 
-    public class OrderController : BaseApiController
+    public class OrderController : BaseApiController<OrderController>
     {
         private readonly IOrderService _orderService;
 

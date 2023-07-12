@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace OnlineBookstoreAPI.Controllers
+﻿namespace OnlineBookstoreAPI.Controllers
 {
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class BaseApiController<T> : ControllerBase where T : BaseApiController<T>

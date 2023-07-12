@@ -27,6 +27,7 @@ try
     IWebHostEnvironment environment = builder.Environment; // access and setup the environment
 
     // Add/register services to the container.
+    builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<IAuthorService, AuthorService>();
     builder.Services.AddScoped<IBookService, BookService>();
     builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -35,8 +36,10 @@ try
     builder.Services.AddScoped<IPublisherService, PublisherService>();
     builder.Services.AddScoped<IShopCartService, ShopCartService>();
     builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 
     // Add/register repositories to the container
+    builder.Services.AddScoped<IAuthRepository, AuthRepository>();
     builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
     builder.Services.AddScoped<IBookRepository, BookRepository>();
     builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -45,7 +48,7 @@ try
     builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
     builder.Services.AddScoped<IShopCartRepository, ShopCartRepository>();
     builder.Services.AddScoped<IUserRepository, UserRepository>();
-
+    builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();

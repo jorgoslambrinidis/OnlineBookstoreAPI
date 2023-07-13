@@ -8,7 +8,6 @@
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
-    using OnlineBookstoreAPI.DTOs;
     using OnlineBookstoreAPI.Controllers;
 
     public class AuthController : BaseApiController<AuthController>

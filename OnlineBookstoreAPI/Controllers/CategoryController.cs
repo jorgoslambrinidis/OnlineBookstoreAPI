@@ -16,8 +16,25 @@
         [HttpGet("Categories")]
         public ActionResult<IEnumerable<Category>> GetAllCategories()
         {
-            var categories = _categoryService.GetAllCategories();
-            return Ok(categories);
+            try
+            {
+                var categories = _categoryService.GetAllCategories();
+
+                if (categories == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    Logger.LogInformation("All categories all taken from th db.");
+                    return Ok(categories);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
+            }
         }
 
         [HttpGet("Category")]

@@ -20,18 +20,22 @@
             {
                 var orders = _orderService.GetAllOrders();
 
-                if (orders.ToList().Count == 0)
+                if (orders == null)
                 {
-                    return StatusCode(StatusCodes.Status404NotFound, "The list is empty");
+                    //return StatusCode(StatusCodes.Status404NotFound, "The list is empty");
+                    return NotFound();
                 }
-
-                return Ok(orders);
+                else
+                {
+                    Logger.LogInformation("All orders all taken from th db.");
+                    return Ok(orders);
+                }
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
             }
-           
         }
     }
 }

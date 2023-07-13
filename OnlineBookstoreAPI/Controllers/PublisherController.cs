@@ -29,6 +29,7 @@
 
                 if (publisher == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage("Publisher"));
                     return NotFound();
                 }
                 else
@@ -52,6 +53,7 @@
 
                 if (publisherToEdit == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage("Publisher"));
                     return NotFound($"Publisher with Id = {publisher.Id} not found!");
                 }
 

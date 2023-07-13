@@ -26,6 +26,7 @@
 
                 if (books == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage("Book"));
                     //return NotFound();
                     return StatusCode(StatusCodes.Status404NotFound);
                 }
@@ -51,6 +52,7 @@
 
                 if (book == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage("Book"));
                     return StatusCode(StatusCodes.Status404NotFound, InfoMessages.BookNotFound);
                 }
                 else
@@ -98,6 +100,7 @@
 
                 if (bookToEdit == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage($"Book with Id = {book.Id}"));
                     return NotFound($"Book with Id = {book.Id} not found!");
                     //return StatusCode(StatusCodes.Status404NotFound, "nekoj message za not found");
                 }
@@ -122,6 +125,7 @@
 
                 if (getBookById == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage($"A book with id: {getBookById.Id}"));
                     return StatusCode(StatusCodes.Status404NotFound);
                 }
 
@@ -145,7 +149,10 @@
                 var booksWithFullData = _bookService.GetAllBooksWithFullRelationalData();
 
                 if (booksWithFullData == null)
+                {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage("Books with full data"));
                     return NotFound();
+                }
                 else
                     return Ok(booksWithFullData);
             }

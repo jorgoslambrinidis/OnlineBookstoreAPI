@@ -16,8 +16,25 @@
         [HttpGet("Authors")]
         public ActionResult<IEnumerable<Author>> GetAuthors()
         {
-            var authors = _authorService.GetAuthors();
-            return Ok(authors);
+            try
+            {
+                var authors = _authorService.GetAuthors();
+
+                if (authors == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    Logger.LogInformation("All authors all taken from th db.");
+                    return Ok(authors);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
+            }
         }
 
 
@@ -31,6 +48,7 @@
 
                 if (author == null)
                 {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage("Author"));
                     return NotFound();
                 }
                 else
@@ -54,7 +72,10 @@
                 var authorToEdit = _authorService.GetAuthorById(author.Id);
 
                 if (authorToEdit == null)
+                {
+                    Logger.LogInformation(message: new GenerateDynamicMessage().GenerateNotFoundMessage($"Author with Id = {author.Id}"));
                     return NotFound($"Author with Id = {author.Id} not found!");
+                }
 
                 //_baseService.Edit(author);
                 _authorService.Edit(author);

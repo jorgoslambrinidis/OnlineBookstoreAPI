@@ -16,8 +16,26 @@
         [HttpGet("Photos")]
         public ActionResult<IEnumerable<Photo>> GetAllPhotos()
         {
-            var photos = _photoService.GetAllPhotos();
-            return Ok(photos);
+            try
+            {
+                var photos = _photoService.GetAllPhotos();
+
+                if (photos == null)
+                {
+                    //return StatusCode(StatusCodes.Status404NotFound, "The list is empty");
+                    return NotFound();
+                }
+                else
+                {
+                    Logger.LogInformation("All photos all taken from th db.");
+                    return Ok(photos);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
+            }
         }
     }
 }

@@ -54,8 +54,14 @@
 
         #region Info Other
         public const string FileNotSelected = "File not selected!";
+        public const string EntityNotFound = "{ENTITY} not found!";
         #endregion
+
+        
     }
+
+   
+   
 
     public class LoggerMessageDisplay
     {
@@ -141,4 +147,16 @@
         public const string UserDeletedError = "User is NOT deleted, error happend in process of deletion";
         #endregion
     }
+
+    #region Dynamic Messages Methods
+
+    public class GenerateDynamicMessage
+    {
+        public string GenerateNotFoundMessage(string entity)
+        {
+            return InfoMessages.EntityNotFound.Replace("{ENTITY}", entity);
+        }
+    }
+
+    #endregion
 }

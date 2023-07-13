@@ -194,6 +194,11 @@ namespace OnlineBookstore.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
+
                     b.Property<double>("Weight")
                         .HasColumnType("float");
 
@@ -233,6 +238,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 20,
                             Title = "Murder On The Orient Express",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.48999999999999999,
                             YearOfIssue = new DateTime(2020, 2, 29, 23, 29, 25, 0, DateTimeKind.Unspecified)
                         },
@@ -258,6 +264,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 19,
                             Title = "The Dark Tower I: The Gunslinger",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.59999999999999998,
                             YearOfIssue = new DateTime(2017, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -283,6 +290,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 3,
                             Title = "Dreamcatcher",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 2.2200000000000002,
                             YearOfIssue = new DateTime(2020, 2, 29, 23, 29, 25, 0, DateTimeKind.Unspecified)
                         },
@@ -308,6 +316,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 4,
                             Title = "The Green Mile",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.48999999999999999,
                             YearOfIssue = new DateTime(2005, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -333,6 +342,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 5,
                             Title = "Insomnia",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.69999999999999996,
                             YearOfIssue = new DateTime(1995, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -358,6 +368,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 6,
                             Title = "The Shining",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 1.6799999999999999,
                             YearOfIssue = new DateTime(1990, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -383,6 +394,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 7,
                             Title = "Desperation",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.48999999999999999,
                             YearOfIssue = new DateTime(2003, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -408,6 +420,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 18,
                             Title = "Othello",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.40000000000000002,
                             YearOfIssue = new DateTime(2003, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -433,6 +446,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 17,
                             Title = "Harry Potter and the Philosopher's Stone",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.34999999999999998,
                             YearOfIssue = new DateTime(2004, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -458,6 +472,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 16,
                             Title = "The Alchemist",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.48999999999999999,
                             YearOfIssue = new DateTime(2006, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -483,6 +498,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 8,
                             Title = "Eleven Minutes",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.52000000000000002,
                             YearOfIssue = new DateTime(2005, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -508,6 +524,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 9,
                             Title = "Best Kept Secret (The Clifton Chronicles)",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.56999999999999995,
                             YearOfIssue = new DateTime(2014, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -533,6 +550,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 15,
                             Title = "Casino Royale",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.29999999999999999,
                             YearOfIssue = new DateTime(2012, 10, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -558,6 +576,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 14,
                             Title = "From Russia with Love",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.41999999999999998,
                             YearOfIssue = new DateTime(2002, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -583,6 +602,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 13,
                             Title = "Every Breath",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.5,
                             YearOfIssue = new DateTime(2010, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -608,6 +628,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 10,
                             Title = "The Last Song",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.5,
                             YearOfIssue = new DateTime(2010, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -633,6 +654,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 12,
                             Title = "The Da Vinci Code",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.48999999999999999,
                             YearOfIssue = new DateTime(2009, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -658,6 +680,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 11,
                             Title = "Inferno",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.5,
                             YearOfIssue = new DateTime(2014, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -683,6 +706,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 11,
                             Title = "The Thirteen Problems",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.34999999999999998,
                             YearOfIssue = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -708,6 +732,7 @@ namespace OnlineBookstore.Data.Migrations
                             Shipping = "Free",
                             SoldItems = 11,
                             Title = "The A.B.C. Murders",
+                            UserId = "1cdd47c0-9dc1-4d24-922a-942df94674b1",
                             Weight = 0.98999999999999999,
                             YearOfIssue = new DateTime(2006, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -1059,17 +1084,17 @@ namespace OnlineBookstore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("90be3127-2099-4229-a6f1-fe8699be1e3f"),
+                            Id = new Guid("1cdd47c0-9dc1-4d24-922a-942df94674b1"),
                             Address = "/",
                             City = "Skopje",
                             Country = "Macedonia",
                             Description = "*** Admin User ***",
                             Email = "smx.test@smx.com",
                             IsAdmin = true,
-                            PasswordHash = new byte[] { 255, 163, 195, 192, 91, 167, 136, 53, 77, 7, 254, 223, 119, 162, 82, 229, 109, 50, 222, 207, 90, 236, 28, 215, 14, 185, 77, 246, 13, 243, 202, 159, 11, 65, 53, 10, 232, 195, 172, 105, 248, 8, 134, 3, 173, 63, 12, 151, 191, 162, 17, 72, 239, 220, 0, 125, 242, 18, 247, 45, 42, 62, 227, 137 },
-                            PasswordSalt = new byte[] { 1, 178, 149, 190, 223, 41, 75, 135, 155, 139, 165, 29, 12, 142, 188, 138, 136, 161, 67, 251, 39, 225, 80, 219, 21, 76, 12, 36, 91, 249, 2, 87, 40, 195, 83, 168, 133, 155, 15, 50, 151, 71, 11, 146, 174, 241, 170, 49, 131, 6, 232, 115, 79, 107, 136, 81, 28, 141, 106, 95, 123, 201, 249, 104, 124, 228, 58, 220, 58, 236, 175, 242, 252, 78, 220, 51, 167, 239, 179, 115, 128, 89, 62, 19, 112, 12, 81, 73, 251, 15, 169, 117, 90, 101, 175, 249, 156, 95, 77, 113, 244, 109, 169, 3, 155, 217, 226, 19, 77, 14, 105, 162, 123, 50, 170, 18, 97, 153, 140, 25, 37, 220, 91, 42, 190, 87, 64, 177 },
+                            PasswordHash = new byte[] { 158, 238, 157, 237, 85, 236, 17, 236, 96, 99, 177, 50, 159, 186, 76, 84, 204, 157, 184, 19, 160, 92, 104, 144, 138, 118, 135, 67, 160, 249, 26, 83, 6, 65, 192, 137, 1, 42, 235, 108, 171, 158, 119, 28, 158, 205, 46, 38, 195, 221, 94, 31, 80, 104, 237, 175, 209, 90, 89, 173, 86, 32, 104, 216 },
+                            PasswordSalt = new byte[] { 115, 154, 179, 146, 159, 74, 135, 209, 4, 10, 144, 99, 105, 209, 153, 53, 158, 54, 22, 167, 88, 221, 119, 231, 163, 124, 99, 175, 66, 15, 215, 215, 77, 162, 6, 83, 232, 226, 36, 21, 127, 136, 54, 76, 190, 35, 179, 240, 49, 177, 192, 205, 70, 149, 61, 52, 226, 233, 32, 195, 126, 89, 212, 64, 88, 39, 241, 144, 152, 198, 32, 118, 115, 126, 95, 208, 166, 121, 249, 223, 140, 163, 182, 8, 153, 53, 210, 111, 241, 183, 30, 47, 205, 127, 180, 124, 196, 59, 63, 218, 220, 148, 15, 202, 87, 223, 252, 91, 168, 219, 108, 178, 212, 57, 187, 100, 160, 53, 220, 0, 50, 146, 27, 224, 116, 157, 141, 246 },
                             Phone = "223305",
-                            UserCreated = new DateTime(2023, 6, 23, 20, 34, 39, 573, DateTimeKind.Local).AddTicks(1266),
+                            UserCreated = new DateTime(2023, 7, 12, 22, 19, 35, 720, DateTimeKind.Local).AddTicks(202),
                             Username = "onlineBookstoreUsername"
                         });
                 });

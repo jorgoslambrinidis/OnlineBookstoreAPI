@@ -1,19 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using NLog;
-using NLog.Extensions.Logging;
+using NLog.Web;
 using OnlineBookstore.Data;
 using OnlineBookstore.Repositories;
 using OnlineBookstore.Repository.Interfaces;
 using OnlineBookstore.Service.Interfaces;
 using OnlineBookstore.Services;
 using System;
+using System.Text.Json.Serialization;
 
 var config = new ConfigurationBuilder().AddJsonFile("appsettings.json", false).Build();
 
 // Early init of NLog to allow startup and exception logging, before host is built
-LogManager.Configuration = new NLogLoggingConfiguration(config.GetSection("NLog"));
-var logger = LogManager.GetCurrentClassLogger();
+//LogManager.Configuration = new NLogLoggingConfiguration(config.GetSection("NLog"));
+//var logger = LogManager.GetCurrentClassLogger();
+//logger.Debug("init main");
+
+var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
 
 try
@@ -50,7 +54,9 @@ try
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
-    builder.Services.AddControllers();
+    builder.Services
+        .AddControllers()
+        .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
@@ -87,6 +93,8 @@ try
 
 
     // -----------------------------------------------------------------------------------------
+
+    builder.Host.UseNLog();
 
     var app = builder.Build();
 

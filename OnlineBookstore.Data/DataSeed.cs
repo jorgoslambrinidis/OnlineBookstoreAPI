@@ -1,6 +1,7 @@
 ﻿namespace OnlineBookstore.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.IdentityModel.Tokens;
     using OnlineBookstore.Entities;
     using System;
     using System.Collections.Generic;
@@ -15,11 +16,13 @@
 
         public static void Seed(ModelBuilder builder, string username, byte[] passwordHash, byte[] passwordSalt)
         {
+            Guid userId = Guid.NewGuid();
+
             #region User Admin Seed
             builder.Entity<User>().HasData(
             new User
             {
-                Id = Guid.NewGuid(),
+                Id = userId,
                 Username = username,
                 Email = "smx.test@smx.com",
                 City = "Skopje",
@@ -293,7 +296,8 @@
                     Weight = 0.49,
                     YearOfIssue = new DateTime(2020, 02, 29, 23, 29, 25),
                     PhotoUrl = "AgathaCristie_MurderOnTheOrientExpress.jpg",
-                    SoldItems = 20
+                    SoldItems = 20,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -326,7 +330,8 @@
                     Weight = 0.60,
                     YearOfIssue = new DateTime(2017, 06, 13, 00, 00, 00),
                     PhotoUrl = "StephenKing_The_Dark_Tower.jpg",
-                    SoldItems = 19
+                    SoldItems = 19,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -356,7 +361,8 @@
                     Weight = 2.22,
                     YearOfIssue = new DateTime(2020, 02, 29, 23, 29, 25),
                     PhotoUrl = "StephenKing_Dreamcatcher.jpg",
-                    SoldItems = 3
+                    SoldItems = 3,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -381,7 +387,8 @@
                     Weight = 0.49,
                     YearOfIssue = new DateTime(2005, 03, 24, 00, 00, 00),
                     PhotoUrl = "StephenKing-The-Green-Mile.jpg",
-                    SoldItems = 4
+                    SoldItems = 4,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -409,7 +416,8 @@
                     Weight = 0.70,
                     YearOfIssue = new DateTime(1995, 09, 01, 00, 00, 00),
                     PhotoUrl = "StephenKing_Insomnia.jpg",
-                    SoldItems = 5
+                    SoldItems = 5,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -434,7 +442,8 @@
                     Weight = 1.68,
                     YearOfIssue = new DateTime(1990, 06, 01, 00, 00, 00),
                     PhotoUrl = "StephenKing_The-Shining.jpg",
-                    SoldItems = 6
+                    SoldItems = 6,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -460,7 +469,8 @@
                     Weight = 0.49,
                     YearOfIssue = new DateTime(2003, 04, 01, 00, 00, 00),
                     PhotoUrl = "StephenKing_Desperation.jpg",
-                    SoldItems = 7
+                    SoldItems = 7,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -486,7 +496,8 @@
                     Weight = 0.40,
                     YearOfIssue = new DateTime(2003, 12, 23, 00, 00, 00),
                     PhotoUrl = "WilliamShakespeare_Othello.jpg",
-                    SoldItems = 18
+                    SoldItems = 18,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -511,7 +522,8 @@
                     Weight = 0.35,
                     YearOfIssue = new DateTime(2004, 07, 10, 00, 00, 00),
                     PhotoUrl = "Harry-Potter-and-the-Philosopher-s-Stone-Rowling-J-K.jpg",
-                    SoldItems = 17
+                    SoldItems = 17,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -537,7 +549,8 @@
                     Weight = 0.49,
                     YearOfIssue = new DateTime(2006, 04, 25, 00, 00, 00),
                     PhotoUrl = "PauloCoelho_The-Alchemist.jpg",
-                    SoldItems = 16
+                    SoldItems = 16,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -563,7 +576,8 @@
                     Weight = 0.52,
                     YearOfIssue = new DateTime(2005, 03, 29, 00, 00, 00),
                     PhotoUrl = "PauloCoelho_Eleven-Minutes.jpg",
-                    SoldItems = 8
+                    SoldItems = 8,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -599,7 +613,8 @@
                     Weight = 0.57,
                     YearOfIssue = new DateTime(2014, 02, 18, 00, 00, 00),
                     PhotoUrl = "ArcherJeffrey-Best-Kept-Secret.jpg",
-                    SoldItems = 9
+                    SoldItems = 9,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -631,7 +646,8 @@
                     Weight = 0.30,
                     YearOfIssue = new DateTime(2012, 10, 16, 00, 00, 00),
                     PhotoUrl = "IanFlemming_Casino_Royale.jpg",
-                    SoldItems = 15
+                    SoldItems = 15,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -658,7 +674,8 @@
                     Weight = 0.42,
                     YearOfIssue = new DateTime(2002, 12, 31, 00, 00, 00),
                     PhotoUrl = "IanFleming_From-Russia-with-Love.jpg",
-                    SoldItems = 14
+                    SoldItems = 14,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -683,7 +700,8 @@
                     Weight = 0.50,
                     YearOfIssue = new DateTime(2010, 03, 01, 00, 00, 00),
                     PhotoUrl = "NicolasSparks_Every13Breath.jpg",
-                    SoldItems = 13
+                    SoldItems = 13,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -715,7 +733,8 @@
                     Weight = 0.50,
                     YearOfIssue = new DateTime(2010, 03, 01, 00, 00, 00),
                     PhotoUrl = "NicolasSparks_The-Last-Song.jpg",
-                    SoldItems = 10
+                    SoldItems = 10,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -744,7 +763,8 @@
                     Weight = 0.49,
                     YearOfIssue = new DateTime(2009, 03, 31, 00, 00, 00),
                     PhotoUrl = "Dan-Brown_The-Da-Vinci-Code.jpg",
-                    SoldItems = 12
+                    SoldItems = 12,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -775,7 +795,8 @@
                     Weight = 0.50,
                     YearOfIssue = new DateTime(2014, 06, 06, 00, 00, 00),
                     PhotoUrl = "Dan-Brown_Inferno.jpg",
-                    SoldItems = 11
+                    SoldItems = 11,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -800,7 +821,8 @@
                     Weight = 0.35,
                     YearOfIssue = new DateTime(2016, 01, 01, 00, 00, 00),
                     PhotoUrl = "AgathaCristie_13_Problems.jpg",
-                    SoldItems = 11
+                    SoldItems = 11,
+                    UserId = userId.ToString()
                 },
                 new Book
                 {
@@ -827,7 +849,8 @@
                     Weight = 0.99,
                     YearOfIssue = new DateTime(2006, 09, 30, 00, 00, 00),
                     PhotoUrl = "AgathaCristie_TheABCMurders.jpg",
-                    SoldItems = 11
+                    SoldItems = 11,
+                    UserId = userId.ToString()
                 }
             );
             #endregion

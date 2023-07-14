@@ -3,21 +3,46 @@
     using Microsoft.AspNetCore.Mvc;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
+    using OnlineBookstore.Services;
 
     public class PublisherController : BaseApiController<OrderController>
     {
         private readonly IPublisherService _publisherService;
+        private readonly IBaseService<Publisher> _baseService;
 
-        public PublisherController(IPublisherService publisherService)
+        public PublisherController(
+            IPublisherService publisherService,
+            IBaseService<Publisher> baseService
+        )
         {
             _publisherService = publisherService;
+            _baseService = baseService;
         }
 
         [HttpGet("Publishers")]
         public ActionResult<IEnumerable<Publisher>> GetAllPublishers()
         {
-            var publishers = _publisherService.GetAllPublishers();
-            return Ok(publishers);
+            try
+            {
+                var publishers = _publisherService.GetAllPublishers();
+                //var publishers = _baseService.GetAll();
+
+                if (publishers == null)
+                {
+                    //return StatusCode(StatusCodes.Status404NotFound, "The list is empty");
+                    return NotFound();
+                }
+                else
+                {
+                    Logger.LogInformation("All publishers all taken from th db.");
+                    return Ok(publishers);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ErrorMessages.ErrorRetievingDataFromDB);
+            }
         }
 
         [HttpGet("Publisher")]
@@ -26,6 +51,7 @@
             try
             {
                 var publisher = _publisherService.GetPublisherById(id);
+                //var publisher = _baseService.Get(id);
 
                 if (publisher == null)
                 {
@@ -50,6 +76,7 @@
             try
             {
                 var publisherToEdit = _publisherService.GetPublisherById(publisher.Id);
+                //var publisherToEdit = _baseService.Get(publisher.Id);
 
                 if (publisherToEdit == null)
                 {
@@ -58,6 +85,7 @@
                 }
 
                 _publisherService.Edit(publisher);
+                //_baseService.Edit(publisher);
 
                 return StatusCode(StatusCodes.Status202Accepted, publisher);
             }
@@ -79,6 +107,7 @@
                 }
 
                 _publisherService.Add(publisher);
+                //_baseService.Add(publisher);
 
                 return CreatedAtAction(nameof(AddPublisher), new { id = publisher.Id }, publisher);
             }
@@ -95,6 +124,7 @@
             try
             {
                 var publisher = _publisherService.GetPublisherById(id);
+                //var publisherToEdit = _baseService.Get(id);
 
                 if (publisher == null)
                 {
@@ -102,6 +132,7 @@
                 }
 
                 _publisherService.Delete(publisher);
+                //_baseService.Delete(publisher);
 
                 return NoContent();
             }

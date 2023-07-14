@@ -7,10 +7,15 @@
     public class CategoryController : BaseApiController<CategoryController>
     {
         private readonly ICategoryService _categoryService;
+        private readonly IBaseService<Category> _baseService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(
+            ICategoryService categoryService,
+            IBaseService<Category> baseService
+        )
         {
             _categoryService = categoryService;
+            _baseService = baseService;
         }
 
         [HttpGet("Categories")]
@@ -19,6 +24,7 @@
             try
             {
                 var categories = _categoryService.GetAllCategories();
+                //var categories = _baseService.GetAll();
 
                 if (categories == null)
                 {
@@ -43,6 +49,7 @@
             try
             {
                 var category = _categoryService.GetCategoryById(id);
+                //var category = _baseService.Get(id);
 
                 if (category == null)
                 {
@@ -66,6 +73,7 @@
             try
             {
                 var categoryToEdit = _categoryService.GetCategoryById(category.Id);
+                //var categoryToEdit = _baseService.Get(category.Id);
 
                 if (categoryToEdit == null)
                 {
@@ -73,6 +81,7 @@
                 }
 
                 _categoryService.Edit(category);
+                //_baseService.Edit(category);
 
                 return StatusCode(StatusCodes.Status202Accepted, category);
             }
@@ -94,6 +103,7 @@
                 }
 
                 _categoryService.Add(category);
+                //_baseService.Add(category);
 
                 return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, category);
             }
@@ -110,6 +120,7 @@
             try
             {
                 var category = _categoryService.GetCategoryById(id);
+                //var category = _baseService.Get(id);
 
                 if (category == null)
                 {
@@ -117,6 +128,7 @@
                 }
 
                 _categoryService.Delete(category);
+                //_baseService.Delete(category);
 
                 return NoContent();
             }

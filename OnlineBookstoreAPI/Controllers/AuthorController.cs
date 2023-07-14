@@ -7,10 +7,15 @@
     public class AuthorController : BaseApiController<AuthorController>
     {
         private readonly IAuthorService _authorService;
+        private readonly IBaseService<Author> _baseService;
 
-        public AuthorController(IAuthorService authorService)
+        public AuthorController(
+            IAuthorService authorService,
+            IBaseService<Author> baseService
+        )
         {
             _authorService = authorService;
+            _baseService = baseService;
         }
 
         [HttpGet("Authors")]
@@ -19,6 +24,7 @@
             try
             {
                 var authors = _authorService.GetAuthors();
+                //var authors = _baseService.GetAll();
 
                 if (authors == null)
                 {
@@ -68,8 +74,8 @@
         {
             try
             {
-                //var authorToEdit = _baseService.Get(author.Id);
                 var authorToEdit = _authorService.GetAuthorById(author.Id);
+                //var authorToEdit = _baseService.Get(author.Id);
 
                 if (authorToEdit == null)
                 {
@@ -99,8 +105,8 @@
                     return BadRequest();
                 }
 
-                //_baseService.Add(author);
                 _authorService.Add(author);
+                //_baseService.Add(author);
 
                 return CreatedAtAction(nameof(CreateAuthor), new { id = author.Id }, author);
             }
@@ -116,8 +122,8 @@
         {
             try
             {
-                //var getAuthorById = _baseService.Get(author.Id);
                 var author = _authorService.GetAuthorById(id);
+                //var getAuthorById = _baseService.Get(author.Id);
 
                 if (author == null)
                 {

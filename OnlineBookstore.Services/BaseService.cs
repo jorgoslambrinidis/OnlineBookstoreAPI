@@ -48,6 +48,12 @@
             return result;
         }
 
+        public async Task<T> Get(int id)
+        {
+            var result = await _baseRepository.Get(id);
+            return result;
+        }
+
         public IEnumerable<T> GetAll()
         {
             var result = _baseRepository.GetAll();

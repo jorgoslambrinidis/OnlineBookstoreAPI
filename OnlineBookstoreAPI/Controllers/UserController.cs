@@ -7,10 +7,15 @@
     public class UserController : BaseApiController<UserController>
     {
         private readonly IUserService _userService;
+        private readonly IBaseService<User> _baseService;
 
-        public UserController(IUserService userService)
+        public UserController(
+            IUserService userService,
+            IBaseService<User> baseService
+        )
         {
             _userService = userService;
+            _baseService = baseService;
         }
 
         [HttpGet("Users")]
@@ -19,6 +24,7 @@
             try
             {
                 var users = _userService.GetAllUsers();
+                //var users = _baseService.GetAll();
 
                 if (users == null)
                 {

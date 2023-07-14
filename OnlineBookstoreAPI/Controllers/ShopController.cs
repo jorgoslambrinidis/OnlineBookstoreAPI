@@ -7,10 +7,15 @@
     public class ShopController : BaseApiController<ShopController>
     {
         private readonly IShopCartService _shopCartService;
+        private readonly IBaseService<ShopCart> _baseService;
 
-        public ShopController(IShopCartService shopCartService)
+        public ShopController(
+            IShopCartService shopCartService,
+            IBaseService<ShopCart> baseService
+        )
         {
             _shopCartService = shopCartService;
+            _baseService = baseService;
         }
 
         [HttpGet("Shopcarts")]
@@ -19,6 +24,7 @@
             try
             {
                 var shopcarts = _shopCartService.GetAllShopCarts();
+                //var shopcarts = _baseService.GetAll();
 
                 if (shopcarts == null)
                 {

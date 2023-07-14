@@ -12,6 +12,8 @@
         IQueryable<T> GetAllQueryable();
 
         Task<T> Get(Guid Id);
+        
+        Task<T> Get(int id);
 
         Task<T> Get();
 

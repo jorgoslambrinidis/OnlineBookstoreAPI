@@ -7,13 +7,17 @@
     public class BookController : BaseApiController<BookController>
     {
         private readonly IBookService _bookService;
+        private readonly IBaseService<Book> _baseService;
         private readonly ILogger<BookController> _logger;
 
         public BookController(
             IBookService bookService,
-            ILogger<BookController> logger)
+             IBaseService<Book> baseService,
+            ILogger<BookController> logger
+        )
         {
             _bookService = bookService;
+            _baseService = baseService;
             _logger = logger;
         }
 
@@ -23,6 +27,7 @@
             try
             {
                 var books = _bookService.GetAllBooks();
+                //var books = _baseService.GetAll();
 
                 if (books == null)
                 {
@@ -49,6 +54,7 @@
             try
             {
                 var book = _bookService.GetBookById(id);
+                //var book = _baseService.Get(id);
 
                 if (book == null)
                 {
@@ -81,6 +87,7 @@
                 }
 
                 _bookService.Add(book);
+                //_baseService.Add(book);
 
                 return CreatedAtAction(nameof(AddBook), new { id = book.Id }, book);
             }
@@ -97,6 +104,7 @@
             try
             {
                 var bookToEdit = _bookService.GetBookById(book.Id);
+                //var bookToEdit = _baseService.Get(book.Id);
 
                 if (bookToEdit == null)
                 {
@@ -106,6 +114,7 @@
                 }
 
                 _bookService.Edit(book);
+                //_baseService.Edit(book);
 
                 return StatusCode(StatusCodes.Status202Accepted, book);
             }
@@ -122,6 +131,7 @@
             try
             {
                 var getBookById = _bookService.GetBookById(id);
+                //var bookToEdit = _baseService.Get(book.Id);
 
                 if (getBookById == null)
                 {
@@ -130,6 +140,7 @@
                 }
 
                 _bookService.Delete(getBookById);
+                //_baseService.Delete(getBookById);
                 _logger.LogInformation($"A book with id: {getBookById.Id} is deleted from the db.");
 
                 return StatusCode(StatusCodes.Status204NoContent);

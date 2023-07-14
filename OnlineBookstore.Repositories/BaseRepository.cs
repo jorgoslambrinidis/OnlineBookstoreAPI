@@ -53,6 +53,12 @@
             return result;
         }
 
+        public async Task<T> Get(int id)
+        {
+            var result = await _entities.FindAsync(id);
+            return result;
+        }
+
         public async Task<T> Get()
         {
             var id = Guid.NewGuid();
@@ -79,5 +85,6 @@
                 _context.Dispose();
             }
         }
+
     }
 }

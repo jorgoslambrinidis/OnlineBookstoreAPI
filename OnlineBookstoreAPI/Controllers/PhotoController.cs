@@ -7,10 +7,15 @@
     public class PhotoController : BaseApiController<PhotoController>
     {
         private readonly IPhotoService _photoService;
+        private readonly IBaseService<Photo> _baseService;
 
-        public PhotoController(IPhotoService photoService)
+        public PhotoController(
+            IPhotoService photoService,
+            IBaseService<Photo> baseService
+        )
         {
             _photoService = photoService;
+            _baseService = baseService;
         }
 
         [HttpGet("Photos")]
@@ -19,6 +24,7 @@
             try
             {
                 var photos = _photoService.GetAllPhotos();
+                //var photos = _baseService.GetAll();
 
                 if (photos == null)
                 {

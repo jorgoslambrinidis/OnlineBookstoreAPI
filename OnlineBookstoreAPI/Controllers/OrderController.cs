@@ -7,10 +7,15 @@
     public class OrderController : BaseApiController<OrderController>
     {
         private readonly IOrderService _orderService;
+        private readonly IBaseService<Order> _baseService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(
+            IOrderService orderService,
+            IBaseService<Order> baseService
+        )
         {
             _orderService = orderService;
+            _baseService = baseService;
         }
 
         [HttpGet("Orders")]
@@ -19,6 +24,7 @@
             try
             {
                 var orders = _orderService.GetAllOrders();
+                //var orders = _baseService.GetAll();
 
                 if (orders == null)
                 {

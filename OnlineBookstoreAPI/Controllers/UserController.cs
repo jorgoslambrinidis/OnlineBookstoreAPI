@@ -1,5 +1,6 @@
 ﻿namespace OnlineBookstoreAPI.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using OnlineBookstore.Entities;
     using OnlineBookstore.Service.Interfaces;
@@ -18,6 +19,17 @@
             _baseService = baseService;
         }
 
+        /// <summary>
+        /// We are adding [Authorize] on top of the controller for auth restriction on this endpoint
+        /// <para> * We have to Login first, get the generated token </para> 
+        /// <para> * First, hit the auth/login endpoint </para> 
+        /// <para> * Make a login as an user (admin user) </para> 
+        /// <para> * Take the generated token </para> 
+        /// <para> * and send the request as a "Bearer [token here]" in the "Authorization Tab" in Postman </para> 
+        /// *** <b> Without the AUTH TOKEN WE CANNOT HIT this endpoint </b>
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpGet("Users")]
         public ActionResult<IEnumerable<User>> GetAllUsers()
         {
